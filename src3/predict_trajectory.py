@@ -136,6 +136,9 @@ def main():
                         help="how many frames ahead to predict (0.5 s each)")
     parser.add_argument("--bev", action="store_true",
                         help="also append the top-down panel underneath")
+    parser.add_argument("--footprints", action="store_true",
+                        help="draw future positions as ground footprints instead of "
+                             "full boxes -- much less cluttered in busy scenes")
     args = parser.parse_args()
 
     source = NuScenesSource()
@@ -227,9 +230,17 @@ def main():
                                         box["yaw"], frame.intrinsics)
                 if future_uv is None or not np.isfinite(future_uv).all():
                     continue
-                # Footprint only, so several horizons stay legible on top of
-                # each other; the last one gets a label saying when it is.
-                draw_footprint(canvas, future_uv, faded, 2 if step == args.horizon else 1)
+                # Full wireframe, so a predicted position reads as the same
+                # kind of object as the current one rather than as a mark on
+                # the road. Thin for intermediate steps and thicker for the
+                # last, which is the one the label belongs to. In a busy scene
+                # this stacks up; --footprints trades the 3D look for clarity.
+                if args.footprints:
+                    draw_footprint(canvas, future_uv, faded,
+                                   2 if step == args.horizon else 1)
+                else:
+                    draw_wireframe(canvas, future_uv, faded,
+                                   2 if step == args.horizon else 1)
                 trail_image.append(base_centre_pixel(future_uv))
                 if step == args.horizon:
                     px, py = trail_image[-1]
@@ -252,7 +263,7 @@ def main():
                     (12, 26), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2, cv2.LINE_AA)
         cv2.putText(canvas, f"{len(boxes)} boxes, {predicted_count} predicted "
                             f"{args.horizon * frame_dt:.1f}s ahead  "
-                            f"(solid = now, footprints = future)",
+                            f"(bright = now, faded = future)",
                     (12, 50), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (255, 255, 255), 2, cv2.LINE_AA)
 
         output = canvas
