@@ -1,0 +1,12 @@
+# ByteTrack config, adapted from ultralytics defaults.
+# track_buffer raised 30 -> 90: at this clip's ~15fps that's 2s -> 6s of
+# tolerance for a vehicle going undetected (headlight glare, brief occlusion)
+# before its track is dropped and it would reappear as a new ID.
+
+tracker_type: bytetrack
+track_high_thresh: 0.25
+track_low_thresh: 0.1
+new_track_thresh: 0.25
+track_buffer: 90
+match_thresh: 0.8
+fuse_score: True

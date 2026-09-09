@@ -1,0 +1,47 @@
+# ---------------------------------------------------------------------
+# Datasets. Gigabytes, and not ours to redistribute.
+# data/kitti/drive_0009.zip alone is 1708 MB; GitHub blocks anything over
+# 100 MB, so this must stay excluded from the very first commit -- removing
+# a large file after it has entered history means rewriting the history.
+# data/README.md is let through so the repo still says how to obtain it all.
+# ---------------------------------------------------------------------
+data/
+!data/README.md
+
+# Python environment and bytecode
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Model weights. yolov8s.pt is 21 MB and both download on first run.
+*.pt
+*.pth
+*.ckpt
+
+# A clone of someone else's repository (Deep3DBox reference implementation).
+# It carries its own .git, which git would otherwise half-track as a broken
+# submodule. The method is reimplemented in src3/ regardless.
+3d_bounding/
+
+# Generated output. results/ is deliberately NOT ignored -- put the few
+# images the README references in there.
+output/
+output2/
+output3/
+
+# Papers and other copyrighted material
+*.pdf
+
+# Leftovers from dataset download scripts
+cookie
+*.zip
+*.tar
+*.tar.gz
+
+# Editor and OS clutter
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

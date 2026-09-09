@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2026-09-02T17:40:34.250218+05:30 by Eclipse SUMO netgenerate 1.27.1
+<netgenerateConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netgenerateConfiguration.xsd">
+
+    <grid_network>
+        <grid value="true"/>
+        <grid.x-number value="2"/>
+        <grid.y-number value="1"/>
+        <grid.x-length value="500"/>
+        <grid.attach-length value="0"/>
+    </grid_network>
+
+    <output>
+        <output-file value="sumo/scenario.net.xml"/>
+    </output>
+
+    <building_defaults>
+        <default.speed value="40"/>
+    </building_defaults>
+
+    <junctions>
+        <no-turnarounds value="true"/>
+    </junctions>
+
+</netgenerateConfiguration>
+-->
+
+<net version="1.20" junctionCornerDetail="5" limitTurnSpeed="5.50" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/net_file.xsd">
+
+    <location netOffset="0.00,0.00" convBoundary="0.00,0.00,500.00,0.00" origBoundary="0.00,0.00,500.00,0.00" projParameter="!"/>
+
+    <edge id="A0B0" from="A0" to="B0" priority="-1">
+        <lane id="A0B0_0" index="0" speed="40.00" length="500.00" shape="0.00,-1.60 500.00,-1.60"/>
+    </edge>
+    <edge id="B0A0" from="B0" to="A0" priority="-1">
+        <lane id="B0A0_0" index="0" speed="40.00" length="500.00" shape="500.00,1.60 0.00,1.60"/>
+    </edge>
+
+    <junction id="A0" type="dead_end" x="0.00" y="0.00" incLanes="B0A0_0" intLanes="" shape="0.00,0.00 0.00,3.20 0.00,0.00"/>
+    <junction id="B0" type="dead_end" x="500.00" y="0.00" incLanes="A0B0_0" intLanes="" shape="500.00,0.00 500.00,-3.20 500.00,0.00"/>
+
+</net>

@@ -1,0 +1,4 @@
+<routes>
+    <vType id="car" length="4.5" width="1.8" accel="3.0" decel="6.0" sigma="0.0"/>
+    <route id="straight" edges="A0B0"/>
+</routes>

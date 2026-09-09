@@ -1,0 +1,28 @@
+Project description for the highD dataset access application
+(edit freely before submitting -- name/institution fields are separate on the form)
+
+---
+
+This is a Bachelor's thesis (BTP) project on real-time vehicle collision-risk
+prediction from vehicle trajectory data. The system estimates each nearby
+vehicle's position and relative velocity, then computes Time-to-Collision
+(TTC) and Closest-Point-of-Approach (CPA) metrics to classify collision risk
+in real time.
+
+The current implementation has been validated against synthetic
+constant-velocity/constant-acceleration scenarios (via SUMO simulation) with
+results matching analytically-computed ground truth. The next step is to
+validate the same TTC/CPA logic against real, precisely-measured vehicle
+trajectories -- particularly cases involving lane changes and lateral
+motion, which the synthetic straight-line tests do not cover.
+
+highD's drone-view trajectory data, with its high positional accuracy and
+already-computed reference TTC/THW values, would let this project:
+1. Cross-check the project's own TTC computation against highD's reference
+   TTC on the same real trajectories.
+2. Test the risk-classification logic against genuine lane-change/lateral
+   maneuvers, not just straight-line closing scenarios.
+
+The dataset would be used strictly for non-commercial thesis research, with
+results discussed in the written thesis and highD cited per your requested
+attribution.
