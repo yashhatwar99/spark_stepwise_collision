@@ -29,9 +29,12 @@ __pycache__/
 output/
 output2/
 output3/
+output4/
+output5/
 
 # Papers and other copyrighted material
 *.pdf
+*.pptx
 
 # Leftovers from dataset download scripts
 cookie
@@ -45,3 +48,13 @@ cookie
 .DS_Store
 Thumbs.db
 desktop.ini
+
+# Claude Code's local, machine-specific settings (allowed commands, local
+# paths). Not secrets, but specific to this machine -- not useful to commit.
+.claude/settings.local.json
+
+# Scratch files not part of the project (test image, run-command notes,
+# a stray paste of an unrelated chat).
+conflict_check.jpg
+command.txt
+to pste
