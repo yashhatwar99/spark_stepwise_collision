@@ -1,0 +1,18 @@
+From index.md, matching the table I gave you earlier:
+
+Paper	Link
+ROAR (2025)	https://arxiv.org/abs/2511.06226
+Predict and Resist (2025)	https://arxiv.org/abs/2511.08640
+RARE / Feature Reuse (2025)	https://arxiv.org/abs/2505.17449
+Real-time Collision Risk from Monocular Video (2019)	https://arxiv.org/abs/1902.01293
+Chan et al. 2016 (DAD)	https://aliensunmin.github.io/project/dashcam/
+UString / CCD (2020)	https://arxiv.org/abs/2008.00334
+DSTA (2021)	https://arxiv.org/abs/2106.10197
+STAGNet (2025)	https://arxiv.org/abs/2508.15216
+VAGNet (2026)	https://arxiv.org/abs/2604.09305
+Domain-Enhanced Dual-Branch (2025)	https://arxiv.org/abs/2507.12755
+FLaRA (2026)	https://arxiv.org/abs/2606.14380
+Nexar Dashcam Collision Prediction (2025)	https://arxiv.org/abs/2503.03848
+BADAS (2025)	https://arxiv.org/abs/2510.14876
+RiskProp (2026)	https://arxiv.org/abs/2603.27165
+All of these are already downloaded in data/pape
