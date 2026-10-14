@@ -1,0 +1,192 @@
+LIMITATIONS OF EACH PAPER (plain language)
+=============================================
+Based on reading each paper's own text (conclusion, limitations, and
+results sections) -- not guessed. Papers are the 14 from the earlier
+GPU/model-size list, sorted the same way.
+
+
+1. ROAR (2025)
+---------------
+- Still makes mistakes: sometimes warns when there's no danger (false
+  alarm), sometimes misses a real accident (false negative).
+- Struggles most with small or far-away accidents -- hard to notice in
+  the video.
+- Hasn't actually been tested for live, real-time use yet -- the authors
+  list "real-time application" as future work, meaning it isn't proven
+  yet.
+- Built specifically to fix sensor noise and uneven data problems, which
+  means those were real weak points in accident-prediction models before
+  it, and testing on more traffic conditions is still needed.
+
+
+2. Predict and Resist (2025)
+------------------------------
+- Needs noisy and clean versions of the same scene to learn how to clean
+  up a noisy video -- depends on having that kind of training data.
+- More moving parts than most models (a noise-cleaning step plus a
+  decision-making step), which likely makes it slower and heavier to run.
+- Built to fix two specific problems (sensor noise, and deciding *when*
+  to warn) -- doesn't claim to fix other issues like unusual road layouts
+  or rare situations.
+
+
+3. RARE / Feature Reuse (2025)
+---------------------------------
+- Its speed comes from reusing another detector's leftover features --
+  so if that detector misses a vehicle, RARE has nothing to work with for
+  that vehicle.
+- Does not use optical flow (motion-tracking between frames) at all,
+  unlike most other models -- it may miss some motion-based warning signs
+  that heavier models would catch.
+- Depends entirely on one single pretrained object detector; there's no
+  backup if that detector performs poorly on a new kind of video.
+
+
+4. Real-time Collision Risk from Monocular Video (2019)
+-----------------------------------------------------------
+- Assumes each car keeps a constant speed and direction when predicting
+  risk -- doesn't handle sudden braking or swerving well.
+- Needs several hand-set numbers (camera height, assumed car width,
+  camera tilt) that must be re-measured for a new camera or vehicle.
+- Fairly slow: about 5.5 FPS with the simple risk model, dropping to
+  about 3.4-4.9 FPS with the more advanced version -- not fast enough for
+  full real-world driving speed.
+- The authors admit they have no ground-truth data to properly check how
+  accurate their own object tracker is -- they list this as future work.
+- Assumes the distance/speed readings have very little noise, with no
+  real smoothing or filtering applied.
+
+
+5. Anticipating Accidents in Dashcam Videos / DAD dataset (2016)
+----------------------------------------------------------------------
+- One of the earliest papers in this area -- its accuracy (about 48% AP)
+  is far below newer methods (often 70-90%+), so it's now mainly
+  historical.
+- Its own DAD dataset is a known weak point: later papers found it has
+  very few real "ego-vehicle involved" accidents (around 92% of its
+  labeled accidents don't actually involve the camera's own car).
+- Built on older building blocks (VGG + LSTM) that have since been
+  replaced by lighter and more accurate networks.
+
+
+6. UString / CCD dataset (2020)
+-----------------------------------
+- Accuracy drops noticeably when it's asked to catch almost every real
+  accident (high recall) -- more real accidents caught means more false
+  alarms too.
+- Relies on a separate object detector (Faster/Cascade R-CNN) running
+  first to find vehicles -- if that detector misses or mislabels a
+  vehicle, the rest of the pipeline is affected.
+- Uses a Bayesian neural network to estimate uncertainty, which needs
+  multiple passes through the network at test time (10 passes) -- more
+  compute than a plain network.
+
+
+7. DSTA (2021)
+------------------
+- Performs very differently on different datasets (DAD vs CCD), and the
+  authors say openly that they don't know the exact reason why -- its
+  behavior on a brand-new dataset is hard to predict.
+- Needs a large, 32GB datacenter GPU (Tesla V100) for training, hinting
+  this is not a lightweight model.
+- Combines multiple trained networks together (late-fusion), which adds
+  extra computation at prediction time.
+
+
+8. STAGNet (2025)
+----------------------
+- The full model is not optimized for speed -- the authors had to build
+  a separate faster "Lite" version, which trades away a bit of accuracy
+  for speed.
+- Accuracy drops noticeably when tested on a dataset it wasn't trained
+  on, and the authors say the exact reason for this drop is unclear.
+- Uses simple rectangular boxes around vehicles, which can include empty
+  background space -- less precise than outlining a vehicle's real shape.
+- Doesn't use real-world distance between vehicles at all -- the authors
+  suggest adding this later to improve results.
+
+
+9. VAGNet (2026)
+---------------------
+- Depends heavily on using a large, powerful video-understanding model
+  (VideoMAE-V2) to reach its best accuracy -- swapping it for an older,
+  lighter model (VGG16) drops accuracy a lot (e.g. 77.98% down to 54.83%
+  AP on one dataset).
+- Still relies on existing dashcam datasets for training, which the
+  authors say don't cover every real driving situation -- more diverse
+  data is listed as future work.
+- Its reported speed (38 FPS) was measured on the authors' own hardware;
+  other methods report higher raw speed, but on more powerful GPUs.
+
+
+10. Domain-Enhanced Dual-Branch Model (2025)
+-------------------------------------------------
+- Fails in poor visual conditions -- the authors show a real example
+  where it misses an accident because of bad lighting and a far-away
+  distance between vehicles.
+- Uses a Large Language Model (GPT-4o) as part of the system, which is
+  heavy and depends on an external AI service working correctly.
+- Collecting and storing accident reports raises data-privacy concerns,
+  requiring extra protection (encryption, anonymizing personal info).
+- Since it saves its own predictions to learn from later, a wrong
+  prediction (false alarm) can end up polluting its own future training
+  data unless it's manually checked.
+
+
+11. FLaRA (2026)
+---------------------
+- Needs a minimum 2-second (16-frame) video clip before it can make any
+  prediction at all -- it can't warn earlier than that, which hurts
+  results on datasets where accidents happen very quickly (like DAD,
+  where accidents start after only ~3 seconds on average).
+- Built on top of a large pretrained video model (V-JEPA2); even though
+  only part of it is fine-tuned, the full model still has 84 million
+  parameters to run.
+- Gets noticeably less accurate the further in advance it's asked to
+  predict -- easier close to the event, harder further ahead.
+
+
+12. RiskProp (2026)
+------------------------
+- Still needs the exact collision frame correctly labeled during
+  training -- it removes the need for "accident start" labels, but not
+  for knowing exactly when the collision itself happens.
+- Only tested on two datasets (CAP and Nexar) -- not yet shown to work
+  equally well on other kinds of dashcam footage.
+- Assumes danger should generally keep rising the closer you get to a
+  collision -- in real driving, a near-miss can spike briefly and then
+  drop again, which this assumption doesn't fully capture.
+
+
+13. BADAS (2025)
+---------------------
+- Much worse at recognizing rare situations -- pedestrians, cyclists,
+  and especially animals get noticeably lower recall than regular
+  vehicle-to-vehicle cases, because there's less training data for them.
+- Its best version (BADAS1.0) needs a large private dataset (40,000
+  videos) that isn't publicly available; the public version (BADAS-Open)
+  is trained on far less data (1,500 videos) and performs worse.
+- The authors note their model (like others tested) sometimes predicts
+  "too early" compared to real human judgment -- in a real car, that
+  would show up as false alarms.
+
+
+14. Nexar Dashcam Collision Prediction Dataset and Challenge (2025)
+-------------------------------------------------------------------------
+- This is mainly a dataset-and-competition paper, not a single trained
+  model -- so its limitations are about the data, not an algorithm.
+- Collected from specific US urban/suburban areas -- may not represent
+  driving conditions elsewhere.
+- Doesn't yet deeply cover extreme weather, multi-vehicle pile-ups, or
+  rare road-user types -- the authors list expanding to these as future
+  work.
+
+
+NOTE ON COVERAGE
+=================
+Two papers in the earlier list had almost no text I could match to
+"limitation" or "future work" keywords (Chan et al. 2016 and UString
+2020) -- for those, the points above come from their results tables and
+conclusion sections instead, plus what later papers (DSTA, VAGNet) say
+about their weaknesses. Everything above is grounded in the papers'
+actual text, not invented.

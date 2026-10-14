@@ -19,6 +19,20 @@ __pycache__/
 *.pth
 *.ckpt
 
+# FP-TTC weights are .pth.tar (133 MB each) -- not caught by *.pth above,
+# and over GitHub's 100 MB limit.
+*.pth.tar
+
+# Clone of the FP-TTC repository (github.com/LChanglin/FP-TTC). Same reason
+# as 3d_bounding/ below: it has its own .git. Our local patches to it
+# (mmcv_compat.py, view_results.py, run_kitti_eval.sh) show up in
+# `git -C fpttc status`, not here.
+fpttc/
+
+# Clone of the RiskProp repository (github.com/xingyueye5/RiskProp). It has
+# its own .git, and its own Python environment in riskprop/.venv.
+riskprop/
+
 # A clone of someone else's repository (Deep3DBox reference implementation).
 # It carries its own .git, which git would otherwise half-track as a broken
 # submodule. The method is reimplemented in src3/ regardless.
