@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FP-TTC, measured</title>
+<style>
+:root{--bg:#f3f5f7;--surface:#fff;--ink:#14202b;--mute:#586674;--line:#d3dae1;--teal:#0f8a80;--teal-f:#d9f2ef;--amber:#a86500;--amber-f:#fdebc8;--red:#c0392b;--green:#1f7a45;
+--display:"Barlow Semi Condensed","Arial Narrow",Arial,sans-serif;--body:"IBM Plex Sans","Segoe UI",system-ui,sans-serif;--mono:"IBM Plex Mono",Consolas,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0f1a24;--surface:#172633;--ink:#eef2f6;--mute:#9db0c2;--line:#2c4256;--teal:#4fd1c5;--teal-f:#163b41;--amber:#f6b93b;--amber-f:#40330f;--red:#ff6b5e;--green:#7bd88f;color-scheme:dark}}
+:root[data-theme=dark]{--bg:#0f1a24;--surface:#172633;--ink:#eef2f6;--mute:#9db0c2;--line:#2c4256;--teal:#4fd1c5;--teal-f:#163b41;--amber:#f6b93b;--amber-f:#40330f;--red:#ff6b5e;--green:#7bd88f;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 var(--body)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 72px}
+.hero{padding:56px 0 32px;display:grid;gap:14px}
+.eyebrow{font:600 13px var(--display);letter-spacing:.14em;text-transform:uppercase;color:var(--teal)}
+h1{font:700 clamp(38px,7vw,64px)/1.02 var(--display);margin:0;letter-spacing:-.01em}
+h2{font:700 26px/1.15 var(--display);margin:0 0 4px}
+h3{font:600 17px var(--display);margin:0;letter-spacing:.02em}
+p{margin:0}
+.lede{max-width:62ch;font-size:18px;color:var(--ink)}
+.sub{color:var(--mute);font-size:13px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:8px 0 8px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:grid;gap:4px;min-width:0}
+.tile b{font:700 40px/1 var(--display)}
+.tile span{color:var(--mute);font-size:13px}
+.tile.t b{color:var(--teal)} .tile.a b{color:var(--amber)} .tile.g b{color:var(--green)} .tile.r b{color:var(--red)}
+section{padding:44px 0 0;display:grid;gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px 22px;display:grid;gap:12px;align-content:start;min-width:0}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.bars{display:grid;gap:7px}
+.bar{display:grid;grid-template-columns:minmax(110px,170px) 1fr 74px;gap:10px;align-items:center;font-size:13.5px}
+.bl{color:var(--mute)} .bv{font:500 13px var(--mono);text-align:right}
+.bt{background:var(--bg);border-radius:4px;height:16px;overflow:hidden}
+.bt i{display:block;height:100%;background:var(--teal);border-radius:4px}
+.bt i.amber{background:var(--amber)} .bt i.red{background:var(--red)} .bt i.mute{background:var(--mute)}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:420px;font-size:14px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+th{font:600 13px var(--display);letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+tr:last-child td{border-bottom:0} td.n,th.n{text-align:right;font-family:var(--mono)}
+tr.hi td{background:var(--teal-f)}
+figure{margin:0;display:grid;gap:8px}
+figure img{max-height:560px;object-fit:contain;background:var(--surface);width:100%;height:auto;border-radius:8px;border:1px solid var(--line);display:block}
+figcaption{color:var(--mute);font-size:13px;max-width:78ch}
+.finding{border-left:3px solid var(--amber);padding:2px 0 2px 14px;max-width:74ch}
+.finding.good{border-color:var(--teal)} .finding.bad{border-color:var(--red)}
+ol.take{margin:0;padding:0;list-style:none;display:grid;gap:14px;counter-reset:t}
+ol.take li{counter-increment:t;display:grid;grid-template-columns:34px 1fr;gap:10px}
+ol.take li::before{content:counter(t);font:700 22px var(--display);color:var(--teal)}
+ol.take b{font:600 17px var(--display);display:block}
+code{font:0.9em var(--mono);background:var(--bg);padding:1px 5px;border-radius:4px}
+footer{margin-top:56px;color:var(--mute);font-size:13px;border-top:1px solid var(--line);padding-top:16px}
+nav{display:flex;flex-wrap:wrap;gap:6px 18px;font:600 14px var(--display);letter-spacing:.06em;text-transform:uppercase;padding-top:6px}
+nav a{color:var(--mute);text-decoration:none} nav a:hover{color:var(--teal)}
+</style></head>
+<body><div class="wrap">
+
+<header class="hero">
+  <div class="eyebrow">Single-camera collision prediction · BTP · October 2026</div>
+  <h1>FP-TTC, measured</h1>
+  <p class="lede">We ran the released FP-TTC model (12.4 M parameters, no retraining) on a 4 GB laptop GPU and measured how accurate it is, how fast it is, and whether it can give a useful time-to-collision for each car.</p>
+  <p class="sub">Model: Li et al., IEEE TCSVT 2024 · GPU: NVIDIA GeForce RTX 3050 Laptop GPU · data: KITTI scene flow (200 pairs) and nuScenes mini (394 keyframes)</p>
+  <nav><a href="#accuracy">Accuracy</a><a href="#percar">Per-car TTC</a><a href="#danger">Danger calls</a><a href="#speed">Speed</a><a href="#resources">Resources</a><a href="#takeaways">Takeaways</a></nav>
+</header>
+
+<div class="tiles">
+  <div class="tile t"><b>52.4</b><span>Mid error on 40 unseen KITTI images (paper: 59.35, lower is better)</span></div>
+  <div class="tile g"><b>90%</b><span>of cars truly under 3 s TTC flagged, on nuScenes it never saw</span></div>
+  <div class="tile a"><b>0.87 s</b><span>median per-car TTC error (0.09 s when the collision is under 1.5 s away)</span></div>
+  <div class="tile r"><b>3.0 fps</b><span>camera to per-car TTC, end to end, on this laptop</span></div>
+</div>
+
+<section id="accuracy">
+  <h2>Accuracy</h2>
+  <div class="two">
+    <div class="card">
+      <h3>Mid error on KITTI, by data and frame pairing</h3>
+      <div class="bars"><div class="bar"><span class="bl">Paper (validation)</span><span class="bt"><i class="" style="width:42.4%"></i></span><span class="bv">59.4</span></div><div class="bar"><span class="bl">Held out, 960×288</span><span class="bt"><i class="" style="width:37.4%"></i></span><span class="bv">52.4</span></div><div class="bar"><span class="bl">Held out, 640×320</span><span class="bt"><i class="" style="width:39.1%"></i></span><span class="bv">54.7</span></div><div class="bar"><span class="bl">Seen in training</span><span class="bt"><i class="" style="width:28.9%"></i></span><span class="bv">40.5</span></div><div class="bar"><span class="bl">Repo script pairing</span><span class="bt"><i class="" style="width:86.4%"></i></span><span class="bv">121.0</span></div></div>
+      <p class="sub">Mid error = mean |log predicted scale − log true scale| × 10,000. Predicting "nothing changes" scores 991.</p>
+    </div>
+    <div class="card">
+      <h3>Where the error sits (held-out images)</h3>
+      <div class="bars"><div class="bar"><span class="bl">0–10 m</span><span class="bt"><i class="amber" style="width:54.1%"></i></span><span class="bv">59.5</span></div><div class="bar"><span class="bl">10–20 m</span><span class="bt"><i class="amber" style="width:45.6%"></i></span><span class="bv">50.2</span></div><div class="bar"><span class="bl">20–40 m</span><span class="bt"><i class="amber" style="width:36.4%"></i></span><span class="bv">40.0</span></div><div class="bar"><span class="bl">40+ m</span><span class="bt"><i class="amber" style="width:29.2%"></i></span><span class="bv">32.1</span></div><div class="bar"><span class="bl">Background</span><span class="bt"><i class="amber" style="width:41.0%"></i></span><span class="bv">45.1</span></div><div class="bar"><span class="bl">Cars and objects</span><span class="bt"><i class="amber" style="width:80.3%"></i></span><span class="bv">88.3</span></div></div>
+      <p class="sub">Objects are about twice as wrong as background, and they are what matters for collision.</p>
+    </div>
+  </div>
+  <div class="finding"><b>The repository's own evaluation script pairs frames _10 and _11</b> and gives 121, about twice the error. The model is trained to predict the next interval from the two frames before it (_09 and _10), so that pairing is the fair one. This difference is not mentioned in the README.</div>
+  <figure><img src="img/kitti_example.jpg" alt="KITTI held-out frame with predicted scale, true scale and error"><figcaption>One held-out KITTI frame. Red means getting closer. The true scale exists only where stereo and flow are both valid.</figcaption></figure>
+</section>
+
+<section id="percar">
+  <h2>Per-car time-to-collision</h2>
+  <p class="lede" style="font-size:16px">FP-TTC gives one value per pixel. To get one value per car we took the scale inside each detected car's box (YOLOv8s), matched to annotated cars on nuScenes, 1418 cars, and compared the resulting TTC with the true TTC from annotated position and velocity.</p>
+  <div class="two">
+    <div class="card">
+      <h3>Median TTC error, seconds</h3>
+      <div class="bars"><div class="bar"><span class="bl">Median, whole box</span><span class="bt"><i class="" style="width:16.0%"></i></span><span class="bv">0.83 s</span></div><div class="bar"><span class="bl">Median, inner 70%</span><span class="bt"><i class="" style="width:16.7%"></i></span><span class="bv">0.87 s</span></div><div class="bar"><span class="bl">Median, inner 50%</span><span class="bt"><i class="" style="width:17.1%"></i></span><span class="bv">0.89 s</span></div><div class="bar"><span class="bl">Zoom fit on the flow</span><span class="bt"><i class="" style="width:88.3%"></i></span><span class="bv">4.59 s</span></div></div>
+    </div>
+    <div class="card"><div class="tablewrap"><table>
+      <tr><th>Method</th><th class="n">Scale</th><th class="n">TTC med.</th><th class="n">TTC p90</th></tr>
+      <tr class=""><td>Median, whole box</td><td class="n">0.33%</td><td class="n">0.83 s</td><td class="n">12.3 s</td></tr><tr class="hi"><td>Median, inner 70%</td><td class="n">0.34%</td><td class="n">0.87 s</td><td class="n">11.3 s</td></tr><tr class=""><td>Median, inner 50%</td><td class="n">0.35%</td><td class="n">0.89 s</td><td class="n">11.5 s</td></tr><tr class=""><td>Zoom fit on the flow</td><td class="n">22.32%</td><td class="n">4.59 s</td><td class="n">23.6 s</td></tr>
+    </table></div><p class="sub">A 0.3% scale error becomes about 0.9 s of TTC error, because TTC is very sensitive when the scale is close to 1.</p></div>
+  </div>
+  <div class="finding bad"><b>The flow zoom fit fails.</b> The flow map FP-TTC returns is about 213 px away from KITTI's true optical flow, so fitting a zoom to it gives a 22% scale error. We measured the mismatch but did not find the cause. The scale map is the output to use.</div>
+  <figure><img src="img/nuscenes_example.jpg" alt="nuScenes street with predicted and true TTC labels"><figcaption>Predicted TTC per car, true TTC from annotations in brackets. Red: under 3 s. Amber: under 6 s.</figcaption></figure>
+</section>
+
+<section id="danger">
+  <h2>Danger calls (TTC under 3 s)</h2>
+  <div class="tiles">
+    <div class="tile g"><b>90%</b><span>recall: 274 of 303 dangerous cars flagged</span></div>
+    <div class="tile a"><b>81%</b><span>precision: 274 of 337 alarms were right</span></div>
+    <div class="tile r"><b>29</b><span>dangerous cars missed</span></div>
+    <div class="tile"><b>63</b><span>false alarms</span></div>
+  </div>
+  <div class="card"><h3>TTC error by how close the collision really is</h3>
+    <div class="bars"><div class="bar"><span class="bl">true TTC 0 to 1.5s</span><span class="bt"><i class="" style="width:4.4%"></i></span><span class="bv">0.10 s</span></div><div class="bar"><span class="bl">true TTC 1.5 to 3s</span><span class="bt"><i class="" style="width:10.7%"></i></span><span class="bv">0.26 s</span></div><div class="bar"><span class="bl">true TTC 3 to 6s</span><span class="bt"><i class="" style="width:31.6%"></i></span><span class="bv">0.76 s</span></div><div class="bar"><span class="bl">true TTC 6 to 12s</span><span class="bt"><i class="" style="width:88.1%"></i></span><span class="bv">2.11 s</span></div></div>
+    <p class="sub">Small exactly where it matters, and growing for distant, slow cars. Median method, inner 70% of the box, 640×352. The 3 s threshold is our choice, not a standard.</p></div>
+</section>
+
+<section id="speed">
+  <h2>Speed</h2>
+  <div class="two">
+    <div class="card"><h3>Milliseconds per frame pair, by input size</h3><div class="bars"><div class="bar"><span class="bl">480×256</span><span class="bt"><i class="" style="width:4.8%"></i></span><span class="bv">165 ms</span></div><div class="bar"><span class="bl">640×320</span><span class="bt"><i class="" style="width:8.4%"></i></span><span class="bv">286 ms</span></div><div class="bar"><span class="bl">640×352</span><span class="bt"><i class="" style="width:9.3%"></i></span><span class="bv">318 ms</span></div><div class="bar"><span class="bl">960×288</span><span class="bt"><i class="" style="width:12.3%"></i></span><span class="bv">419 ms</span></div><div class="bar"><span class="bl">960×544</span><span class="bt"><i class="" style="width:25.7%"></i></span><span class="bv">877 ms</span></div><div class="bar"><span class="bl">1248×384</span><span class="bt"><i class="" style="width:23.5%"></i></span><span class="bv">800 ms</span></div><div class="bar"><span class="bl">1280×704</span><span class="bt"><i class="" style="width:100.0%"></i></span><span class="bv">3408 ms</span></div></div></div>
+    <div class="card"><h3>Share of time per part (640×320)</h3><div class="bars"><div class="bar"><span class="bl">backbone CNN</span><span class="bt"><i class="amber" style="width:14.7%"></i></span><span class="bv">8.8%</span></div><div class="bar"><span class="bl">backbone transformer</span><span class="bt"><i class="amber" style="width:83.5%"></i></span><span class="bv">50.1%</span></div><div class="bar"><span class="bl">flow / matching</span><span class="bt"><i class="amber" style="width:11.7%"></i></span><span class="bv">7.0%</span></div><div class="bar"><span class="bl">initial scale (conv_corr)</span><span class="bt"><i class="amber" style="width:1.7%"></i></span><span class="bv">1.0%</span></div><div class="bar"><span class="bl">scale encoder</span><span class="bt"><i class="amber" style="width:28.0%"></i></span><span class="bv">16.8%</span></div><div class="bar"><span class="bl">matching-clue attention</span><span class="bt"><i class="amber" style="width:5.0%"></i></span><span class="bv">3.0%</span></div><div class="bar"><span class="bl">decoder + upsample</span><span class="bt"><i class="amber" style="width:21.5%"></i></span><span class="bv">12.9%</span></div></div>
+      <p class="sub">Half the time is the backbone's transformer. The decoder holds 45% of the parameters but takes 13% of the time.</p></div>
+  </div>
+</section>
+
+<section id="resources">
+  <h2>Resources</h2>
+  <div class="tiles">
+    <div class="tile t"><b>0.67 GB</b><span>GPU memory at 640×320, one pair</span></div>
+    <div class="tile a"><b>2.7 GB</b><span>at 1280×704 (3.4 s per pair)</span></div>
+    <div class="tile"><b>5.1 s</b><span>per pair on the CPU</span></div>
+    <div class="tile"><b>328 ms</b><span>YOLOv8s 12 + FP-TTC 316 + per-car median under 1</span></div>
+  </div>
+  <div class="card">
+    <p><b>Batching does not help:</b> two pairs at once cost the same per pair, four use 4.6 GB and get slower, eight run out of the 4 GB.</p>
+    <p><b>Half precision fails:</b> switching to fp16 stops with an overflow error, so there is no easy speed-up there.</p>
+    <p><b>Attention runs in plain PyTorch</b> instead of the authors' CUDA kernel, which we did not install, so its time share here is probably higher than in the paper.</p>
+  </div>
+</section>
+
+<section id="takeaways">
+  <h2>What this means for the project</h2>
+  <ol class="take">
+    <li><div><b>Usable as a TTC sensor.</b>On data it never saw, the per-car median is within 0.3% on scale and flags 90% of the cars truly under 3 s.</div></li>
+    <li><div><b>Not real time on this laptop.</b>About 3 frames per second end to end: fine for evaluation and demos, too slow for a live warning without changes.</div></li>
+    <li><div><b>Do not use its flow output.</b>It does not match KITTI's true flow and the flow-zoom method fails with it. The scale map works.</div></li>
+    <li><div><b>Far and slow cars are unreliable.</b>TTC error grows to about 2 s when the true TTC is 6 to 12 s, so warnings should only trust close, fast-closing cars.</div></li>
+    <li><div><b>Open question.</b>Whether a small trained head on the model's internal features beats the plain median. Not measured yet.</div></li>
+  </ol>
+</section>
+
+<footer>All numbers come from <code>fpttc_results/results/report_data.json</code>, produced by <code>eval_kitti.py</code>, <code>eval_nuscenes.py</code> and <code>benchmark_speed.py</code>. Timings: GPU synchronised, warm-up first, median of 15 to 30 runs on an idle GPU. The Mid error definition is our reconstruction of the paper's metric from the repository's validation code; our held-out figure matching the paper's 59.35 supports it but does not prove it.</footer>
+</div></body></html>

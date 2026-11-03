@@ -1,0 +1,26 @@
+D:\Documents_D\HOMEWORK\7th sem\btp\spark_stepwise\fpttc\fpttc\scale_net\utils\multi_scale_deformable_attn_function.py:20: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @custom_fwd(cast_inputs=torch.float32)
+D:\Documents_D\HOMEWORK\7th sem\btp\spark_stepwise\fpttc\fpttc\scale_net\utils\multi_scale_deformable_attn_function.py:58: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @custom_bwd
+C:\Users\Asus\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\functional.py:539: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\aten\src\ATen\native\TensorShape.cpp:3638.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+keyframes 20   matched cars so far 72   42s
+keyframes 40   matched cars so far 106   80s
+keyframes 60   matched cars so far 247   118s
+keyframes 80   matched cars so far 428   156s
+keyframes 100   matched cars so far 479   194s
+keyframes 120   matched cars so far 555   232s
+keyframes 140   matched cars so far 716   271s
+keyframes 160   matched cars so far 761   309s
+keyframes 180   matched cars so far 812   347s
+keyframes 200   matched cars so far 863   385s
+keyframes 220   matched cars so far 930   422s
+keyframes 240   matched cars so far 953   460s
+keyframes 260   matched cars so far 1079   498s
+keyframes 280   matched cars so far 1177   537s
+keyframes 300   matched cars so far 1225   574s
+keyframes 320   matched cars so far 1261   612s
+keyframes 340   matched cars so far 1308   650s
+keyframes 360   matched cars so far 1351   688s
+keyframes 380   matched cars so far 1400   726s
+saved. keyframes used 394, matched cars 1418

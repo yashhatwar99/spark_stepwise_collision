@@ -72,3 +72,11 @@ desktop.ini
 conflict_check.jpg
 command.txt
 to pste
+
+# Node packages for building the results slides (fpttc_results/deck)
+node_modules/
+
+# A nuScenes camera frame (example figure for the results page). nuScenes' terms
+# do not let the images be redistributed. Re-create with fpttc_results/make_figures.py.
+fpttc_results/figures/nuscenes_example.jpg
+fpttc_results/site/img/nuscenes_example.jpg

@@ -1,0 +1,27 @@
+D:\Documents_D\HOMEWORK\7th sem\btp\spark_stepwise\fpttc\fpttc\scale_net\utils\multi_scale_deformable_attn_function.py:20: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @custom_fwd(cast_inputs=torch.float32)
+D:\Documents_D\HOMEWORK\7th sem\btp\spark_stepwise\fpttc\fpttc\scale_net\utils\multi_scale_deformable_attn_function.py:58: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @custom_bwd
+C:\Users\Asus\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\functional.py:539: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\aten\src\ATen\native\TensorShape.cpp:3638.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+image 1/200   8s elapsed
+image 11/200   129s elapsed
+image 21/200   434s elapsed
+image 31/200   725s elapsed
+image 41/200   997s elapsed
+image 51/200   1261s elapsed
+image 61/200   1528s elapsed
+image 71/200   1814s elapsed
+image 81/200   2061s elapsed
+image 91/200   2131s elapsed
+image 101/200   2202s elapsed
+image 111/200   2272s elapsed
+image 121/200   2341s elapsed
+image 131/200   2411s elapsed
+image 141/200   2480s elapsed
+image 151/200   2549s elapsed
+image 161/200   2618s elapsed
+image 171/200   2689s elapsed
+image 181/200   2759s elapsed
+image 191/200   2828s elapsed
+saved kitti_images.csv and kitti_cars.csv

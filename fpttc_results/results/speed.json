@@ -1,0 +1,223 @@
+{
+  "device": "NVIDIA GeForce RTX 3050 Laptop GPU",
+  "torch": "2.6.0+cu124",
+  "cuda": "12.4",
+  "python": "3.11.0",
+  "note": "deformable attention runs in pure PyTorch (mmcv_compat.py), slower than the authors' CUDA kernel",
+  "parameters_total": 12435041,
+  "file_size_mb": {
+    "fpttc_kitti.pth.tar": 132.9,
+    "fpttc_mix.pth.tar": 132.9
+  },
+  "parameters_by_module": {
+    "backbone CNN": 1196576,
+    "backbone transformer": 3150336,
+    "flow / matching": 369808,
+    "initial scale (conv_corr)": 298113,
+    "scale encoder": 1448864,
+    "matching-clue attention": 328448,
+    "decoder + upsample": 5642896
+  },
+  "by_size": [
+    {
+      "mean_ms": 165.24642333303441,
+      "median_ms": 164.91059999862046,
+      "std_ms": 1.8793745906918138,
+      "p95_ms": 168.66533499796788,
+      "min_ms": 161.85500000210595,
+      "runs": 30,
+      "fps": 6.063891587371372,
+      "width": 480,
+      "height": 256,
+      "peak_gpu_gb": 0.426349056
+    },
+    {
+      "mean_ms": 286.3356366668692,
+      "median_ms": 286.1581999986811,
+      "std_ms": 1.606474454824571,
+      "p95_ms": 288.94931500144594,
+      "min_ms": 283.46150000288617,
+      "runs": 30,
+      "fps": 3.494570485852263,
+      "width": 640,
+      "height": 320,
+      "peak_gpu_gb": 0.670336512
+    },
+    {
+      "mean_ms": 317.4272399997183,
+      "median_ms": 317.51635000000533,
+      "std_ms": 0.8787200305568699,
+      "p95_ms": 318.68646499733586,
+      "min_ms": 315.9782000002451,
+      "runs": 30,
+      "fps": 3.149444115239997,
+      "width": 640,
+      "height": 352,
+      "peak_gpu_gb": 0.731749376
+    },
+    {
+      "mean_ms": 419.34756333321275,
+      "median_ms": 419.46174999975483,
+      "std_ms": 1.3673140485091968,
+      "p95_ms": 421.28910000265023,
+      "min_ms": 416.3585999995121,
+      "runs": 30,
+      "fps": 2.3840076002176227,
+      "width": 960,
+      "height": 288,
+      "peak_gpu_gb": 0.88359424
+    },
+    {
+      "mean_ms": 877.2155066671985,
+      "median_ms": 877.0110500008741,
+      "std_ms": 1.7035303238153416,
+      "p95_ms": 880.2604649998102,
+      "min_ms": 874.1807999977027,
+      "runs": 30,
+      "fps": 1.1402364884672813,
+      "width": 960,
+      "height": 544,
+      "peak_gpu_gb": 1.614203904
+    },
+    {
+      "mean_ms": 801.273106666243,
+      "median_ms": 800.4906499991193,
+      "std_ms": 2.694224674583611,
+      "p95_ms": 806.433955000648,
+      "min_ms": 797.2391000002972,
+      "runs": 30,
+      "fps": 1.249233829278456,
+      "width": 1248,
+      "height": 384,
+      "peak_gpu_gb": 1.48700928
+    },
+    {
+      "mean_ms": 3412.4815566662924,
+      "median_ms": 3407.844600000317,
+      "std_ms": 37.59141349990878,
+      "p95_ms": 3477.306919999319,
+      "min_ms": 3359.6426999974938,
+      "runs": 30,
+      "fps": 0.2934406105254644,
+      "width": 1280,
+      "height": 704,
+      "peak_gpu_gb": 2.743983104
+    }
+  ],
+  "by_module_640x320": {
+    "backbone CNN": {
+      "ms": 25.333025000327325,
+      "percent": 8.806252826258838
+    },
+    "backbone transformer": {
+      "ms": 144.18407500015746,
+      "percent": 50.121192315376746
+    },
+    "flow / matching": {
+      "ms": 20.0402699991173,
+      "percent": 6.9663881165568124
+    },
+    "initial scale (conv_corr)": {
+      "ms": 2.9207849998783786,
+      "percent": 1.0153217454189167
+    },
+    "scale encoder": {
+      "ms": 48.342159999810974,
+      "percent": 16.804676232715664
+    },
+    "matching-clue attention": {
+      "ms": 8.530544999484846,
+      "percent": 2.9653835659290975
+    },
+    "decoder + upsample": {
+      "ms": 37.037989999771526,
+      "percent": 12.875126602931163
+    },
+    "(total, with timing overhead)": {
+      "ms": 287.6708800000415,
+      "percent": 100.0
+    }
+  },
+  "by_batch_640x320": [
+    {
+      "mean_ms": 286.73632666735404,
+      "median_ms": 285.6080000019574,
+      "std_ms": 3.1872429977969796,
+      "p95_ms": 291.00804000008793,
+      "min_ms": 284.31650000129594,
+      "runs": 15,
+      "fps": 3.501302484500247,
+      "batch": 1,
+      "ms_per_pair": 285.6080000019574,
+      "peak_gpu_gb": 0.670336512
+    },
+    {
+      "mean_ms": 564.2828199993043,
+      "median_ms": 564.3708999996306,
+      "std_ms": 0.5813997536962848,
+      "p95_ms": 565.1066599992191,
+      "min_ms": 563.308099997812,
+      "runs": 15,
+      "fps": 1.771884411475954,
+      "batch": 2,
+      "ms_per_pair": 282.1854499998153,
+      "peak_gpu_gb": 2.329639424
+    },
+    {
+      "mean_ms": 2014.5854866665711,
+      "median_ms": 2013.9326999997138,
+      "std_ms": 12.946951019687006,
+      "p95_ms": 2032.3082599981717,
+      "min_ms": 1998.201299997163,
+      "runs": 15,
+      "fps": 0.4965409221470718,
+      "batch": 4,
+      "ms_per_pair": 503.48317499992845,
+      "peak_gpu_gb": 4.600600576
+    },
+    {
+      "batch": 8,
+      "error": "out of GPU memory"
+    }
+  ],
+  "half_precision_640x320": {
+    "error": "RuntimeError: value cannot be converted to type at::Half without overflow"
+  },
+  "cpu_640x320": {
+    "median_ms": 5092.912700001762,
+    "runs": 3,
+    "threads": 6
+  },
+  "pipeline_640x352": {
+    "yolov8s": {
+      "mean_ms": 13.711913333342332,
+      "median_ms": 12.116500000047381,
+      "std_ms": 7.617407688848458,
+      "p95_ms": 27.479039999343446,
+      "min_ms": 10.276800003339304,
+      "runs": 30,
+      "fps": 82.53208434746746
+    },
+    "fpttc_including_resize": {
+      "mean_ms": 315.78046000013273,
+      "median_ms": 315.8684499994706,
+      "std_ms": 0.964244746516599,
+      "p95_ms": 316.9844550018752,
+      "min_ms": 314.1931999998633,
+      "runs": 20,
+      "fps": 3.165874907739839
+    },
+    "per_car_median": {
+      "mean_ms": 0.3235429999222106,
+      "median_ms": 0.301949999993667,
+      "std_ms": 0.06165695707129425,
+      "p95_ms": 0.4772499985847387,
+      "min_ms": 0.28670000028796494,
+      "runs": 200,
+      "fps": 3311.806590564576
+    },
+    "cars_in_frame": 13,
+    "total_median_ms": 328.28689999951166,
+    "fps": 3.0461160649465073
+  }
+}
