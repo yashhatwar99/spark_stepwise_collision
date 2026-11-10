@@ -9,7 +9,7 @@ same inner box, with s_true = disparity at _10 / disparity at _11 (the repo's
 own ground_truth()).
 
 Usage (from the project root, with the project .venv):
-    python per_car_ttc/check_on_kitti.py 25 10 0
+    python per_car_ttc/median/check_on_kitti.py 25 10 0
     (any image numbers 0 to 199; the held-out 40 are the multiples of 5)
 """
 

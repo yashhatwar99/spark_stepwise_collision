@@ -1,0 +1,37 @@
+D:\Documents_D\HOMEWORK\7th sem\btp\spark_stepwise\fpttc\fpttc\scale_net\utils\multi_scale_deformable_attn_function.py:20: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @custom_fwd(cast_inputs=torch.float32)
+D:\Documents_D\HOMEWORK\7th sem\btp\spark_stepwise\fpttc\fpttc\scale_net\utils\multi_scale_deformable_attn_function.py:58: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @custom_bwd
+version A: parameters 6,165,185 (full 12,435,041)
+version B: parameters 5,427,393 (full 12,435,041)
+C:\Users\Asus\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\functional.py:539: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\aten\src\ATen\native\TensorShape.cpp:3638.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+version A: SF_t differs from the full model's by 0.51 % on average
+version B: SF_t differs from the full model's by 0.51 % on average
+retraining Conv3 for version A ...
+    round 5  quiz error 63.6  (best 57.6)
+  quiz error 62.4 -> 57.6
+retraining Conv3 for version B ...
+    round 5  quiz error 63.3  (best 58.4)
+  quiz error 62.4 -> 58.4
+Mid error held-out 40: {'full': 54.7, 'decoder_removed': 68.9, 'A_asis': 69.0, 'A_retrained': 64.6, 'B_asis': 68.9, 'B_retrained': 65.2}
+timing (GPU) ...
+  cuda full: 282 ms
+  cuda decoder_removed: 241 ms
+  cuda A: 222 ms
+  cuda B: 219 ms
+timing (CPU, a few runs) ...
+  cpu full: 5233 ms
+  cpu decoder_removed: 4676 ms
+  cpu A: 3949 ms
+  cpu B: 3838 ms
+keyframes 40   cars 106
+keyframes 120   cars 555
+keyframes 160   cars 761
+keyframes 200   cars 863
+keyframes 240   cars 953
+keyframes 280   cars 1177
+keyframes 320   cars 1261
+keyframes 360   cars 1351
+
+saved D:\Documents_D\HOMEWORK\7th sem\btp\spark_stepwise\lightweight_fpttc\removing_flow_affine\results\versions_summary.json and D:\Documents_D\HOMEWORK\7th sem\btp\spark_stepwise\lightweight_fpttc\removing_flow_affine\results\versions_summary.md

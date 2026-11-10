@@ -1,0 +1,20 @@
+D:\Documents_D\HOMEWORK\7th sem\btp\spark_stepwise\fpttc\fpttc\scale_net\utils\multi_scale_deformable_attn_function.py:20: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @custom_fwd(cast_inputs=torch.float32)
+D:\Documents_D\HOMEWORK\7th sem\btp\spark_stepwise\fpttc\fpttc\scale_net\utils\multi_scale_deformable_attn_function.py:58: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @custom_bwd
+C:\Users\Asus\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\functional.py:539: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\aten\src\ATen\native\TensorShape.cpp:3638.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+stage 1, distillation: 140 KITTI pairs
+  stage 1 round 5  quiz loss 34.4  (best 34.4)
+  stage 1 round 10  quiz loss 38.2  (best 33.4)
+  stage 1 round 15  quiz loss 32.5  (best 31.1)
+  stage 1 round 20  quiz loss 31.7  (best 31.1)
+  stage 1 round 25  quiz loss 29.2  (best 29.2)
+  stage 1 round 30  quiz loss 28.8  (best 28.8)
+  stage 1 round 35  quiz loss 28.5  (best 28.5)
+  stage 1 round 40  quiz loss 28.5  (best 28.5)
+after stage 1: Mid error held-out 40 = 62.1
+stage 2, KITTI truth
+  stage 2 round 5  quiz loss 56.2  (best 55.9)
+quiz truth loss 55.9 -> 55.9 after 8 rounds
+Mid error held-out 40: {'all': 62.06145018222742, 'cars': 119.33309107553214, 'background': 50.95816586253932}

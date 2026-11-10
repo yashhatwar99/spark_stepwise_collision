@@ -1,0 +1,45 @@
+D:\Documents_D\HOMEWORK\7th sem\btp\spark_stepwise\fpttc\fpttc\scale_net\utils\multi_scale_deformable_attn_function.py:20: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @custom_fwd(cast_inputs=torch.float32)
+D:\Documents_D\HOMEWORK\7th sem\btp\spark_stepwise\fpttc\fpttc\scale_net\utils\multi_scale_deformable_attn_function.py:58: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @custom_bwd
+C:\Users\Asus\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\functional.py:539: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\aten\src\ATen\native\TensorShape.cpp:3638.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+training pairs: 140 KITTI + 413 raw drive = 553; quiz 20
+before training: quiz distillation loss 52.1
+round   1   train loss   37.3   quiz loss   36.9   (best)   11s
+round   2   train loss   30.3   quiz loss   35.3   (best)   26s
+round   3   train loss   28.7   quiz loss   34.5   (best)   43s
+round   4   train loss   29.8   quiz loss   33.2   (best)   56s
+round   5   train loss   27.2   quiz loss   35.4   68s
+round   6   train loss   26.0   quiz loss   33.7   80s
+round   7   train loss   26.0   quiz loss   33.3   93s
+round   8   train loss   25.3   quiz loss   35.1   105s
+round   9   train loss   26.9   quiz loss   35.9   117s
+round  10   train loss   25.8   quiz loss   31.2   (best)   130s
+round  11   train loss   26.2   quiz loss   32.6   142s
+round  12   train loss   25.2   quiz loss   35.3   154s
+round  13   train loss   24.9   quiz loss   34.0   166s
+round  14   train loss   25.4   quiz loss   33.1   178s
+round  15   train loss   24.1   quiz loss   30.0   (best)   191s
+round  16   train loss   23.3   quiz loss   32.3   203s
+round  17   train loss   25.2   quiz loss   44.7   214s
+round  18   train loss   23.8   quiz loss   30.3   227s
+round  19   train loss   23.3   quiz loss   29.4   (best)   239s
+round  20   train loss   23.2   quiz loss   32.7   252s
+round  21   train loss   22.6   quiz loss   34.0   264s
+round  22   train loss   23.1   quiz loss   29.5   277s
+round  23   train loss   23.6   quiz loss   36.7   292s
+round  24   train loss   22.4   quiz loss   31.2   305s
+round  25   train loss   22.2   quiz loss   27.6   (best)   317s
+round  26   train loss   21.6   quiz loss   29.1   330s
+round  27   train loss   22.1   quiz loss   32.0   343s
+round  28   train loss   22.4   quiz loss   29.2   355s
+round  29   train loss   21.1   quiz loss   29.9   369s
+round  30   train loss   21.3   quiz loss   29.0   383s
+round  31   train loss   21.2   quiz loss   29.3   396s
+round  32   train loss   22.3   quiz loss   31.1   408s
+round  33   train loss   21.1   quiz loss   31.2   420s
+round  34   train loss   21.9   quiz loss   35.3   433s
+round  35   train loss   20.2   quiz loss   31.3   445s
+quiz loss stopped improving, stopping
+Mid error held-out 40: {'all': 62.37182006589137, 'cars': 123.43054171651602, 'background': 50.04926652327413}

@@ -11,8 +11,12 @@ per car tttc workflow
 using median 
 https://claude.ai/artifact/FEgdJN4uMzH9CSnpsDfob6
 
+
+/////////////////////////////////////////
 per car ttc workflow, all four methods (newest, 2 Nov)
 https://claude.ai/artifact/XELFaW4WMaxZ2P5B1fqjGe
+////////////////////////////////////////////
+
 
 fpttc vs per car ttc, methods A and B
 https://claude.ai/artifact/DQ7Rfc8Lcc7AdC1oiahK9w
@@ -22,6 +26,28 @@ https://claude.ai/artifact/9Ener4ZCfh2mdmc36U85nx
 
 baseline validation
 https://claude.ai/artifact/B8KDvSo6b6Wwy8qHXNuarz
+
+
+///////////////////////////////////////////////
+per car ttc results comparison: median, learned head, flow + affine (3 Nov)
+https://claude.ai/artifact/38PVpf9okD5iFGYEPH1zEo
+///////////////////////////////////////////////////
+
+/////////////////////////////////////////////////
+kitti results, median vs learned head on all 200 kitti pairs (3 Nov)
+https://claude.ai/artifact/ThL7QYYBAC8fQoP5MW8cMk
+/////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////
+light fp-ttc results, full vs light (new decoder): size, speed, accuracy (4 Nov)
+https://claude.ai/artifact/PHRNyWihFNmvHWmgMtJMa5
+///////////////////////////////////////////////
+
+
+
+presentation (Canva, 21 slides): full model, per-car TTC, comparisons, light model (4 Nov)
+https://www.canva.com/d/r0FvLEcRp8M0SSO
 
 
 

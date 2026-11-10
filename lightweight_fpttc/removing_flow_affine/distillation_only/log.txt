@@ -1,0 +1,17 @@
+D:\Documents_D\HOMEWORK\7th sem\btp\spark_stepwise\fpttc\fpttc\scale_net\utils\multi_scale_deformable_attn_function.py:20: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @custom_fwd(cast_inputs=torch.float32)
+D:\Documents_D\HOMEWORK\7th sem\btp\spark_stepwise\fpttc\fpttc\scale_net\utils\multi_scale_deformable_attn_function.py:58: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @custom_bwd
+C:\Users\Asus\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\functional.py:539: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\aten\src\ATen\native\TensorShape.cpp:3638.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+distillation only: training on 140 KITTI pairs, quiz 20
+  distill round 5  quiz loss 41.5  (best 34.9)
+  distill round 10  quiz loss 35.8  (best 34.9)
+  distill round 15  quiz loss 33.7  (best 30.9)
+  distill round 20  quiz loss 30.6  (best 30.6)
+  distill round 25  quiz loss 29.2  (best 29.2)
+  distill round 30  quiz loss 29.0  (best 28.9)
+  distill round 35  quiz loss 28.5  (best 28.5)
+  distill round 40  quiz loss 28.5  (best 28.5)
+quiz distillation loss 52.1 -> 28.5 after 40 rounds
+Mid error held-out 40: {'all': 61.74215648206882, 'cars': 118.05862898472697, 'background': 50.69424279645318}

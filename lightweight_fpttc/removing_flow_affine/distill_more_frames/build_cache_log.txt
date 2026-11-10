@@ -1,0 +1,25 @@
+D:\Documents_D\HOMEWORK\7th sem\btp\spark_stepwise\fpttc\fpttc\scale_net\utils\multi_scale_deformable_attn_function.py:20: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  @custom_fwd(cast_inputs=torch.float32)
+D:\Documents_D\HOMEWORK\7th sem\btp\spark_stepwise\fpttc\fpttc\scale_net\utils\multi_scale_deformable_attn_function.py:58: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @custom_bwd
+447 raw frames -> 413 pairs (frames 374-405 left out)
+C:\Users\Asus\AppData\Local\Programs\Python\Python311\Lib\site-packages\torch\functional.py:539: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\aten\src\ATen\native\TensorShape.cpp:3638.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+pair 0/413   2s
+pair 25/413   15s
+pair 50/413   28s
+pair 75/413   41s
+pair 100/413   55s
+pair 125/413   68s
+pair 150/413   82s
+pair 175/413   96s
+pair 200/413   109s
+pair 225/413   123s
+pair 250/413   137s
+pair 275/413   151s
+pair 300/413   165s
+pair 325/413   179s
+pair 350/413   193s
+pair 375/413   208s
+pair 400/413   222s
+saved 413 pairs in D:\Documents_D\HOMEWORK\7th sem\btp\spark_stepwise\lightweight_fpttc\removing_flow_affine\distill_more_frames\cache
