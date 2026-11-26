@@ -10,7 +10,7 @@ For every pair, saved to cache/ as memory-mapped files (they are too big to hold
     raw_pairs.json      the frame numbers of every pair
 
 Usage (from the project root, with the project .venv):
-    python lightweight_fpttc/removing_flow_affine/distill_more_frames/build_cache.py
+    python lightweight_fpttc/removing_flow_affine_decoder/distill_more_frames/build_cache.py
 """
 import json
 import sys
@@ -23,7 +23,7 @@ import torch
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parents[0]))
-sys.path.insert(0, str(HERE.parents[1] / "removing_decoder"))
+sys.path.insert(0, str(HERE.parents[1] / "removing_decoder_only"))
 
 import no_flow_model as M  # noqa: E402
 import light_model as L  # noqa: E402

@@ -4,7 +4,7 @@ Chart images for the Canva presentation (dark background, transparent, white tex
   fpttc_results/results/report_data.json      full model speed, median and flow + affine results
   per_car_ttc/median/output/kitti/all_cars.csv, per_car_ttc/learned_head/output/kitti/all_cars.csv
   per_car_ttc/learned_head/output/nuscenes_eval.json
-  lightweight_fpttc/removing_decoder/results/summary.json
+  lightweight_fpttc/removing_decoder_only/results/summary.json
 
 Usage (from the project root):  python presentation/make_slide_images.py
 Writes presentation/images/*.png
@@ -27,7 +27,7 @@ OUT.mkdir(exist_ok=True)
 
 R = json.loads((ROOT / "fpttc_results/results/report_data.json").read_text(encoding="utf8"))
 NH = json.loads((ROOT / "per_car_ttc/learned_head/output/nuscenes_eval.json").read_text(encoding="utf8"))
-LS = json.loads((ROOT / "lightweight_fpttc/removing_decoder/results/summary.json").read_text(encoding="utf8"))
+LS = json.loads((ROOT / "lightweight_fpttc/removing_decoder_only/results/summary.json").read_text(encoding="utf8"))
 
 WHITE, MUTED = "#f2f2f2", "#9aa3b5"
 BEIGE, BLUE, ORANGE, GREEN, GREY = "#d9c3a0", "#4a82cf", "#e08a3c", "#6fc08f", "#6b7690"

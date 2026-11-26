@@ -14,10 +14,10 @@ What it does
 Images:  held-out test = number divisible by 5 (40);  quiz = number ending in 1 (20);  training = the rest (140).
 
 Usage (from the project root, with the project .venv):
-    python lightweight_fpttc/removing_flow_affine/train_no_flow.py --query two
-    python lightweight_fpttc/removing_flow_affine/train_no_flow.py --query one
-    python lightweight_fpttc/removing_flow_affine/train_no_flow.py --query two --distill 0.5 --name two_distill
-Needs the cache of the first light version (run lightweight_fpttc/removing_decoder/train_light_decoder.py once).
+    python lightweight_fpttc/removing_flow_affine_decoder/train_no_flow.py --query two
+    python lightweight_fpttc/removing_flow_affine_decoder/train_no_flow.py --query one
+    python lightweight_fpttc/removing_flow_affine_decoder/train_no_flow.py --query two --distill 0.5 --name two_distill
+Needs the cache of the first light version (run lightweight_fpttc/removing_decoder_only/train_light_decoder.py once).
 """
 
 import argparse
@@ -32,7 +32,7 @@ import torch.nn.functional as F
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
-sys.path.insert(0, str(HERE.parent / "removing_decoder"))
+sys.path.insert(0, str(HERE.parent / "removing_decoder_only"))
 
 import no_flow_model as M  # noqa: E402
 import light_model as L  # noqa: E402
@@ -41,7 +41,7 @@ import evaluate_light as E  # noqa: E402  (Mid error code of the first light ver
 
 C = L.C
 CACHE_FEATS = HERE / "cache" / "kitti_features.pt"
-CACHE_PART1 = HERE.parent / "removing_decoder" / "cache" / "kitti_light.pt"
+CACHE_PART1 = HERE.parent / "removing_decoder_only" / "cache" / "kitti_light.pt"
 RES = HERE / "results"
 N_IMAGES = 200
 BATCH = 4
@@ -197,7 +197,7 @@ def main():
     # final numbers: Mid error as in evaluate_light.py (same function), against the full model and the first light version
     maps = scale_maps(head, F_, range(N_IMAGES), dev)
     me = E.mid_errors(maps, d)
-    prev = json.loads((HERE.parent / "removing_decoder" / "results" / "summary.json").read_text())["mid_error"]
+    prev = json.loads((HERE.parent / "removing_decoder_only" / "results" / "summary.json").read_text())["mid_error"]
     res = dict(name=name, query=a.query, distill=a.distill, parameters=p, quiz_error_e4=best * 1e4, rounds=len(log), mid_error={})
     for k, sel in (("held_out_40", lambda r: r == "test"), ("other_160", lambda r: r != "test"), ("all_200", lambda r: True)):
         m = me.role.map(sel)

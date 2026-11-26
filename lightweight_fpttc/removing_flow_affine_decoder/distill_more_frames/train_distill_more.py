@@ -7,9 +7,9 @@ Loss: mean |log(Conv3's s) - log(full model's s)| over every pixel. No KITTI tru
 Round cap 100, the learning rate shrinks over the 100 rounds, stop after 10 rounds without a better quiz loss.
 
 Usage (from the project root, with the project .venv):
-    python lightweight_fpttc/removing_flow_affine/distill_more_frames/train_distill_more.py
+    python lightweight_fpttc/removing_flow_affine_decoder/distill_more_frames/train_distill_more.py
 Writes weights/conv3.pt, results/summary.json, results/summary.md, results/kitti_cars.csv, results/training_log.json.
-Pictures: python lightweight_fpttc/removing_flow_affine/compare_outputs_versions.py --conv3 distill_more_frames
+Pictures: python lightweight_fpttc/removing_flow_affine_decoder/compare_outputs_versions.py --conv3 distill_more_frames
 """
 import json
 import sys

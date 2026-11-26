@@ -1,11 +1,19 @@
 # Lightweight FP-TTC
 
-Two ways of making FP-TTC lighter, one folder each. Everything else in FP-TTC stays as released (`fpttc_kitti` weights, frozen).
+Two ways of making FP-TTC lighter, one folder each. Everything else in FP-TTC stays as released (`fpttc_kitti` weights, frozen). Only Conv3, the small replacement for the decoder, is trained, and only on KITTI.
 
-| Folder | What is removed | Status |
+| Folder | What is removed | Results (Mid error on 40 held-out KITTI pairs, lower is better; full model 54.7) |
 |---|---|---|
-| `removing_decoder/` | the decoder and the matching-clue attention, replaced by Conv3 (3 conv layers) | built and measured: 6.83 M parameters, Mid error 68.9 (full model 54.7) |
-| `removing_flow_affine/` | also the flow + affine stage (the query no longer comes from it) | two versions built and measured (A keeps `scale_conv`: 6.17 M parameters; B drops it: 5.43 M); Mid error 69.0 / 68.9 as is, 64.6 / 65.2 with Conv3 retrained (full 54.7); see `results/versions_summary.md`, pictures in `output/kitti/` |
+| `removing_decoder_only/` | the decoder and the matching-clue attention, replaced by Conv3 (3 conv layers). Flow + affine is kept | 6.83 M parameters. Conv3 trained on KITTI truth: 68.9. Conv3 distilled (`distillation/`): 61.7 |
+| `removing_flow_affine_decoder/` | the decoder (as above) **and** the flow + affine stage (the scale encoder's query now comes from the image features) | two versions, A keeps `scale_conv` (6.17 M parameters), B drops it (5.43 M). Conv3 as it is: 69.0 / 68.9. Trained on KITTI truth: 64.6 / 65.2. Distilled (A): 61.7 |
 
-`removing_flow_affine/` reuses `light_model.py`, the Conv3 weights and the KITTI cache of `removing_decoder/`.
+## Subfolders
+
+- `removing_decoder_only/distillation/`: Conv3 copies the full model's scale map (no KITTI truth). Mid error 61.7. Has its own `results/` and `output/kitti/` pictures.
+- `removing_flow_affine_decoder/distillation_only/`, `distill_then_kitti/`, `distill_more_frames/`: three ways of teaching Conv3 by distillation on version A (61.7, 62.1, and 62.4 on 553 pairs). Each has `results/` and `output/kitti/` pictures.
+- `removing_flow_affine_decoder/results/versions_summary.md`: parameters, speed, accuracy and per-car TTC for versions A and B.
+
+Every new method also gets its output pictures on KITTI frames in its own `output/kitti/` folder (not committed).
+
+`removing_flow_affine_decoder/` reuses `light_model.py`, the Conv3 weights and the KITTI cache of `removing_decoder_only/`.
 Run the scripts from the project root with the project `.venv`; each file's header says how.

@@ -3,7 +3,7 @@ Follow-up to query_matters.py: if the query does not matter, the layers that mak
 Replaces the encoder's scale_conv (3 convolutions that turn the query input into the 128-channel query)
 by a constant zero query, and compares SF_t with the full model's SF_t.
 
-Usage: python lightweight_fpttc/removing_flow_affine/query_not_needed.py
+Usage: python lightweight_fpttc/removing_flow_affine_decoder/query_not_needed.py
 """
 import copy
 import sys
@@ -14,7 +14,7 @@ import torch.nn as nn
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
-sys.path.insert(0, str(HERE.parent / "removing_decoder"))
+sys.path.insert(0, str(HERE.parent / "removing_decoder_only"))
 
 import no_flow_model as M  # noqa: E402
 import light_model as L  # noqa: E402
@@ -31,7 +31,7 @@ class ZeroQuery(nn.Module):
 
 
 F_ = torch.load(HERE / "cache" / "kitti_features.pt", weights_only=False)
-d = torch.load(HERE.parent / "removing_decoder" / "cache" / "kitti_light.pt", weights_only=False)
+d = torch.load(HERE.parent / "removing_decoder_only" / "cache" / "kitti_light.pt", weights_only=False)
 model = C.load_model("fpttc_kitti")
 enc = model.scalenet.encoder.eval()
 enc2 = copy.deepcopy(enc)

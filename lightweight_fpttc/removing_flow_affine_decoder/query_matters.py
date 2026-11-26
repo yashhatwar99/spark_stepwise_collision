@@ -6,7 +6,7 @@ with SF_t from the same encoder when the query is made from the image features, 
 Run on 10 KITTI images, features from the cache of train_no_flow.py.
 
 Usage (from the project root, with the project .venv):
-    python lightweight_fpttc/removing_flow_affine/query_matters.py
+    python lightweight_fpttc/removing_flow_affine_decoder/query_matters.py
 """
 
 import sys
@@ -16,7 +16,7 @@ import torch
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
-sys.path.insert(0, str(HERE.parent / "removing_decoder"))
+sys.path.insert(0, str(HERE.parent / "removing_decoder_only"))
 
 import no_flow_model as M  # noqa: E402
 import light_model as L  # noqa: E402
@@ -24,7 +24,7 @@ import light_model as L  # noqa: E402
 C = L.C
 dev = "cuda"
 F_ = torch.load(HERE / "cache" / "kitti_features.pt", weights_only=False)
-d = torch.load(HERE.parent / "removing_decoder" / "cache" / "kitti_light.pt", weights_only=False)
+d = torch.load(HERE.parent / "removing_decoder_only" / "cache" / "kitti_light.pt", weights_only=False)
 model = C.load_model("fpttc_kitti")
 enc = model.scalenet.encoder.eval()
 

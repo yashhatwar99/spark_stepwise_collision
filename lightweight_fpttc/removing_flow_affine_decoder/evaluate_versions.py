@@ -5,16 +5,16 @@ The two versions of the light model without flow + affine, measured against the 
   B  flow + affine AND scale_conv removed. The query is one fixed constant.
 
 Both keep the scale encoder (released weights, frozen) and use Conv3 on its output. Each is measured twice:
-  asis        Conv3 exactly as trained in removing_decoder
+  asis        Conv3 exactly as trained in removing_decoder_only
   retrained   Conv3 trained again on this version's own SF_t (the encoder stays frozen); the quiz images pick the best round
 
 Measured: parameters, time (GPU, CPU), Mid error on KITTI (40 held-out images), per-car TTC on KITTI and nuScenes cars.
 Writes results/versions_summary.json and results/versions_summary.md.
 
 Usage (from the project root, with the project .venv):
-    python lightweight_fpttc/removing_flow_affine/evaluate_versions.py
-    python lightweight_fpttc/removing_flow_affine/evaluate_versions.py --skip_nuscenes --skip_cpu
-Needs cache/kitti_features.pt (train_no_flow.py makes it) and the cache and weights of removing_decoder.
+    python lightweight_fpttc/removing_flow_affine_decoder/evaluate_versions.py
+    python lightweight_fpttc/removing_flow_affine_decoder/evaluate_versions.py --skip_nuscenes --skip_cpu
+Needs cache/kitti_features.pt (train_no_flow.py makes it) and the cache and weights of removing_decoder_only.
 """
 
 import argparse
@@ -31,7 +31,7 @@ import torch.nn.functional as F
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
-sys.path.insert(0, str(HERE.parent / "removing_decoder"))
+sys.path.insert(0, str(HERE.parent / "removing_decoder_only"))
 
 import no_flow_model as M  # noqa: E402
 import light_model as L  # noqa: E402
@@ -41,7 +41,7 @@ import evaluate_light as E  # noqa: E402  (Mid error, timing and per-car code of
 C = L.C
 RES = HERE / "results"
 CACHE_FEATS = HERE / "cache" / "kitti_features.pt"
-CACHE_PART1 = HERE.parent / "removing_decoder" / "cache" / "kitti_light.pt"
+CACHE_PART1 = HERE.parent / "removing_decoder_only" / "cache" / "kitti_light.pt"
 N = 200
 DT = 0.1
 BATCH, LR, WD = 4, 1e-4, 1e-4
@@ -158,7 +158,7 @@ def main():
     d = torch.load(CACHE_PART1, weights_only=False)
     sf_full = d.pop("sf")
     d.pop("ft")
-    prev = json.loads((HERE.parent / "removing_decoder" / "results" / "summary.json").read_text())
+    prev = json.loads((HERE.parent / "removing_decoder_only" / "results" / "summary.json").read_text())
 
     model = C.load_model("fpttc_kitti")
     heads = {v: M.build_head(model, v, None, dev) for v in ("A", "B")}
@@ -292,7 +292,7 @@ def write_md(S):
     lines = ["# Light FP-TTC without flow + affine: version A and version B", "",
              "- **A**: only flow + affine removed. The encoder's own `scale_conv` stays and makes the query from the image features.",
              "- **B**: flow + affine and `scale_conv` removed. The query is one fixed constant.",
-             "- *asis*: Conv3 from `removing_decoder`, not trained again. *retrained*: Conv3 trained again on this version's SF_t (encoder frozen).", "",
+             "- *asis*: Conv3 from `removing_decoder_only`, not trained again. *retrained*: Conv3 trained again on this version's SF_t (encoder frozen).", "",
              "## Size and speed", "",
              "| | Full FP-TTC | Decoder removed | A | B |", "|---|---|---|---|---|"]
     p = S["parameters"]

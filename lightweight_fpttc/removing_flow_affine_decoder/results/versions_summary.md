@@ -2,7 +2,7 @@
 
 - **A**: only flow + affine removed. The encoder's own `scale_conv` stays and makes the query from the image features.
 - **B**: flow + affine and `scale_conv` removed. The query is one fixed constant.
-- *asis*: Conv3 from `removing_decoder`, not trained again. *retrained*: Conv3 trained again on this version's SF_t (encoder frozen).
+- *asis*: Conv3 from `removing_decoder_only`, not trained again. *retrained*: Conv3 trained again on this version's SF_t (encoder frozen).
 
 ## Size and speed
 

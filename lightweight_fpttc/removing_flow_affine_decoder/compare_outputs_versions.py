@@ -8,10 +8,10 @@ The title gives the Mid error of each model on that picture.
 A and B use the Conv3 retrained on KITTI (weights/versions_conv3_retrained.pt, made by evaluate_versions.py).
 
 Usage (from the project root, with the project .venv):
-    python lightweight_fpttc/removing_flow_affine/compare_outputs_versions.py            # the 40 held-out KITTI images
-    python lightweight_fpttc/removing_flow_affine/compare_outputs_versions.py --all      # all 200
-    python lightweight_fpttc/removing_flow_affine/compare_outputs_versions.py --kitti 25
-Output goes to lightweight_fpttc/removing_flow_affine/output/kitti/ (pictures, a Mid error CSV and a per-car CSV).
+    python lightweight_fpttc/removing_flow_affine_decoder/compare_outputs_versions.py            # the 40 held-out KITTI images
+    python lightweight_fpttc/removing_flow_affine_decoder/compare_outputs_versions.py --all      # all 200
+    python lightweight_fpttc/removing_flow_affine_decoder/compare_outputs_versions.py --kitti 25
+Output goes to lightweight_fpttc/removing_flow_affine_decoder/output/kitti/ (pictures, a Mid error CSV and a per-car CSV).
 """
 
 import argparse
@@ -29,7 +29,7 @@ import matplotlib.pyplot as plt  # noqa: E402
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
-sys.path.insert(0, str(HERE.parent / "removing_decoder"))
+sys.path.insert(0, str(HERE.parent / "removing_decoder_only"))
 sys.path.insert(0, str(HERE.parents[1] / "per_car_ttc" / "shared"))
 
 import no_flow_model as M  # noqa: E402
@@ -43,7 +43,7 @@ OUT = HERE / "output" / "kitti"
 NAMES = ["full FP-TTC", "version A (scale_conv kept)", "version B (scale_conv removed)"]
 
 
-def figure(curr, maps, cars, dt, path, where, mids, names=None):
+def figure(curr, maps, cars, dt, path, where, mids, names=None, note=None):
     names = names or NAMES
     n = len(maps)
     H, W = curr.shape[:2]

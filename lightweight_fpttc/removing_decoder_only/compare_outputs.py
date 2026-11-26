@@ -9,11 +9,11 @@ For each frame pair: the top row is the full model, the bottom row is the light 
 For KITTI pairs the title also gives the Mid error of each model on that picture.
 
 Usage (from the project root, with the project .venv):
-    python lightweight_fpttc/removing_decoder/compare_outputs.py FRAME_EARLIER FRAME_LATER --dt 0.1
-    python lightweight_fpttc/removing_decoder/compare_outputs.py --kitti 25
-    python lightweight_fpttc/removing_decoder/compare_outputs.py --kitti_all        # all 200 pairs -> output/kitti/ and all_cars.csv
-    python lightweight_fpttc/removing_decoder/compare_outputs.py --nuscenes 262
-Output goes to lightweight_fpttc/removing_decoder/output/.
+    python lightweight_fpttc/removing_decoder_only/compare_outputs.py FRAME_EARLIER FRAME_LATER --dt 0.1
+    python lightweight_fpttc/removing_decoder_only/compare_outputs.py --kitti 25
+    python lightweight_fpttc/removing_decoder_only/compare_outputs.py --kitti_all        # all 200 pairs -> output/kitti/ and all_cars.csv
+    python lightweight_fpttc/removing_decoder_only/compare_outputs.py --nuscenes 262
+Output goes to lightweight_fpttc/removing_decoder_only/output/.
 """
 
 import argparse

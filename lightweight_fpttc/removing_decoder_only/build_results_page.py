@@ -1,12 +1,12 @@
 """
 Builds the results page for the light FP-TTC against the full FP-TTC, only from the saved results:
 
-  lightweight_fpttc/removing_decoder/results/summary.json       (made by evaluate_light.py)
+  lightweight_fpttc/removing_decoder_only/results/summary.json       (made by evaluate_light.py)
 
-Every number on the page is read from that file. Writes lightweight_fpttc/removing_decoder/results/results_page.html
+Every number on the page is read from that file. Writes lightweight_fpttc/removing_decoder_only/results/results_page.html
 (a page body for the Artifact tool).
 
-Usage (from the project root):  python lightweight_fpttc/removing_decoder/build_results_page.py
+Usage (from the project root):  python lightweight_fpttc/removing_decoder_only/build_results_page.py
 """
 
 import json
@@ -17,9 +17,11 @@ HERE = Path(__file__).resolve().parent
 S = json.loads((HERE / "results" / "summary.json").read_text(encoding="utf8"))
 P, G, CPU, MID = S["parameters"], S["time_gpu"], S.get("time_cpu"), S["mid_error"]
 KC, NC, TR = S["kitti_cars"], S["nuscenes_cars"], S["decoder_training"]
-_V = HERE.parent / "removing_flow_affine" / "results" / "versions_summary.json"
+_V = HERE.parent / "removing_flow_affine_decoder" / "results" / "versions_summary.json"
 V = json.loads(_V.read_text(encoding="utf8")) if _V.exists() else None      # part 2 (versions A and B), if measured
-_RFA = HERE.parent / "removing_flow_affine"
+_D1 = HERE / "distillation" / "results" / "summary.json"
+D1 = json.loads(_D1.read_text(encoding="utf8")) if _D1.exists() else None        # decoder removed only, Conv3 distilled
+_RFA = HERE.parent / "removing_flow_affine_decoder"
 DIST = {k: json.loads((_RFA / k / "results" / "summary.json").read_text(encoding="utf8"))
         for k in ("distillation_only", "distill_then_kitti", "distill_more_frames") if (_RFA / k / "results" / "summary.json").exists()}
 
@@ -230,6 +232,9 @@ def step_row(method, a, b, note="", speed_key=None):
 def journey():
     m = MID["held_out_40"]
     rows = step_row("Remove the decoder (Conv3 trained on KITTI)", m["full"], m["light"], "full model &rarr; light model, part 1", "decoder_removed")
+    if D1:
+        rows += step_row("Decoder removed only: teach Conv3 by distillation instead", m["light"], D1["mid_error"]["held_out_40"]["all"],
+                         "copy the full model's scale map, 140 KITTI pairs, flow + affine kept", "decoder_removed")
     if V:
         v = V["mid_error"]["held_out_40"]
         rows += step_row("A: also remove flow + affine (Conv3 as it is)", v["decoder_removed"], v["A_asis"], "the query now comes from the image features through scale_conv", "A")
@@ -311,7 +316,7 @@ def part2():
     <div class="tablewrap"><table>
       <thead><tr><th>Measure</th><th class="n">Full</th><th class="n">A as it is</th><th class="n">A retrained</th><th class="n">B as it is</th><th class="n">B retrained</th></tr></thead>
       <tbody>{cars2}</tbody></table></div>
-    <p class="sub">Same median method as in part 1. Pictures of the full model, A and B on the held-out KITTI images are in <code>lightweight_fpttc/removing_flow_affine/output/kitti/</code>.</p>
+    <p class="sub">Same median method as in part 1. Pictures of the full model, A and B on the held-out KITTI images are in <code>lightweight_fpttc/removing_flow_affine_decoder/output/kitti/</code>.</p>
   </section>
 """
 
@@ -452,7 +457,7 @@ page = f"""<title>Light FP-TTC Results</title>
 
   {part3_html}
 
-  <footer>Every number is read from <code>lightweight_fpttc/removing_decoder/results/summary.json</code> (part 1) and <code>lightweight_fpttc/removing_flow_affine/results/versions_summary.json</code> (part 2) and the <code>summary.json</code> of each folder under <code>lightweight_fpttc/removing_flow_affine/</code> (part 3), made by <code>lightweight_fpttc/removing_decoder/evaluate_light.py</code>. This page is rebuilt by <code>lightweight_fpttc/removing_decoder/build_results_page.py</code>. The side-by-side pictures are in <code>lightweight_fpttc/removing_decoder/output/</code>.</footer>
+  <footer>Every number is read from <code>lightweight_fpttc/removing_decoder_only/results/summary.json</code> (part 1) and <code>lightweight_fpttc/removing_flow_affine_decoder/results/versions_summary.json</code> (part 2) and the <code>summary.json</code> of each folder under <code>lightweight_fpttc/removing_flow_affine_decoder/</code> (part 3), made by <code>lightweight_fpttc/removing_decoder_only/evaluate_light.py</code>. This page is rebuilt by <code>lightweight_fpttc/removing_decoder_only/build_results_page.py</code>. The side-by-side pictures are in <code>lightweight_fpttc/removing_decoder_only/output/</code>.</footer>
 </main>
 """
 

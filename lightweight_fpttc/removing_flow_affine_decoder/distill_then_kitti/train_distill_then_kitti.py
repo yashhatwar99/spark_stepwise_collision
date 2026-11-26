@@ -7,9 +7,9 @@ All on the 140 KITTI training pairs; the 20 quiz pairs pick the best round of ea
 only for the final Mid error.
 
 Usage (from the project root, with the project .venv):
-    python lightweight_fpttc/removing_flow_affine/distill_then_kitti/train_distill_then_kitti.py
+    python lightweight_fpttc/removing_flow_affine_decoder/distill_then_kitti/train_distill_then_kitti.py
 Writes weights/conv3.pt, results/summary.json, results/summary.md, results/kitti_cars.csv in this folder.
-Pictures: python lightweight_fpttc/removing_flow_affine/compare_outputs_versions.py --conv3 distill_then_kitti
+Pictures: python lightweight_fpttc/removing_flow_affine_decoder/compare_outputs_versions.py --conv3 distill_then_kitti
 """
 
 import sys

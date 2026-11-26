@@ -6,9 +6,9 @@ Version A (flow + affine removed), Conv3 taught ONLY by the full model (distilla
   which is measured against KITTI's truth, as for every other method.
 
 Usage (from the project root, with the project .venv):
-    python lightweight_fpttc/removing_flow_affine/distillation_only/train_distill_only.py
+    python lightweight_fpttc/removing_flow_affine_decoder/distillation_only/train_distill_only.py
 Writes weights/conv3.pt, results/summary.json, results/summary.md, results/kitti_cars.csv in this folder.
-Pictures: python lightweight_fpttc/removing_flow_affine/compare_outputs_versions.py --conv3 distillation_only
+Pictures: python lightweight_fpttc/removing_flow_affine_decoder/compare_outputs_versions.py --conv3 distillation_only
 """
 
 import sys

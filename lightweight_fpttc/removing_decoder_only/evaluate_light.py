@@ -6,11 +6,11 @@ Full FP-TTC against the light FP-TTC (new decoder): size, speed, memory and accu
   accuracy          Mid error (the paper's metric) on KITTI: the 40 held-out images, the other 160, all 200
   per-car TTC       the median method on both scale maps, KITTI cars (from the same cache) and nuScenes cars
 
-Writes lightweight_fpttc/removing_decoder/results/summary.json and summary.md.
+Writes lightweight_fpttc/removing_decoder_only/results/summary.json and summary.md.
 
 Usage (from the project root, with the project .venv):
-    python lightweight_fpttc/removing_decoder/evaluate_light.py
-    python lightweight_fpttc/removing_decoder/evaluate_light.py --skip_nuscenes
+    python lightweight_fpttc/removing_decoder_only/evaluate_light.py
+    python lightweight_fpttc/removing_decoder_only/evaluate_light.py --skip_nuscenes
 """
 
 import argparse

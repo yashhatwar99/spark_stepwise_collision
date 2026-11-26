@@ -9,7 +9,7 @@ Three ways to teach Conv3 (the scale encoder and everything before it stay froze
 
 Images: held-out test = number divisible by 5 (40);  quiz = number ending in 1 (20);  training = the rest (140).
 The quiz images pick the best round (by the same kind of loss that was trained on). The held-out images are only used for the final numbers.
-The full model's scale maps are the ones saved in removing_decoder/cache/kitti_light.pt (scale_full).
+The full model's scale maps are the ones saved in removing_decoder_only/cache/kitti_light.pt (scale_full).
 """
 
 import json
@@ -23,7 +23,7 @@ import torch.nn.functional as F
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
-sys.path.insert(0, str(HERE.parent / "removing_decoder"))
+sys.path.insert(0, str(HERE.parent / "removing_decoder_only"))
 
 import no_flow_model as M  # noqa: E402
 import light_model as L  # noqa: E402

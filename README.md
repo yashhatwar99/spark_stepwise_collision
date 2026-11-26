@@ -50,8 +50,8 @@ On the full FP-TTC output, taking the median of the TTC map inside each car's bo
 4. **Run from the project root.** Each script's header says what it needs and how to run it. For example:
 
 ```
-python lightweight_fpttc/removing_decoder/evaluate_light.py          # full vs decoder-removed model
-python lightweight_fpttc/removing_flow_affine/evaluate_versions.py   # versions A and B
+python lightweight_fpttc/removing_decoder_only/evaluate_light.py          # full vs decoder-removed model
+python lightweight_fpttc/removing_flow_affine_decoder/evaluate_versions.py   # versions A and B
 python per_car_ttc/median/check_on_kitti.py                          # median per-car TTC on KITTI
 ```
 
@@ -62,7 +62,7 @@ The light-model scripts need cached features of KITTI that are not committed (1 
 - **KITTI split.** Scene numbers divisible by 5 are the 40 held-out test scenes, numbers ending in 1 are 20 "quiz" scenes used only to pick the best training round, and the other 140 are for training. Only KITTI is used for training; nuScenes is test-only.
 - **Mid error.** `mean |log(predicted s) - log(true s)| x 10,000` over pixels where KITTI has a true scale.
 - **Timing.** One KITTI pair at 640x320, the model alone, middle of many runs, on the laptop GPU and CPU. GPU times move a few milliseconds between runs.
-- **Extra frames for distillation** come from KITTI raw drive 0009. That drive contains KITTI scene flow scenes 7 to 12, so the frames near the held-out and quiz scenes were removed (`lightweight_fpttc/removing_flow_affine/distill_more_frames/check_overlap.py`).
+- **Extra frames for distillation** come from KITTI raw drive 0009. That drive contains KITTI scene flow scenes 7 to 12, so the frames near the held-out and quiz scenes were removed (`lightweight_fpttc/removing_flow_affine_decoder/distill_more_frames/check_overlap.py`).
 
 ## Known limits
 

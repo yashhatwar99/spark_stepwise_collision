@@ -89,23 +89,25 @@ per_car_ttc/learned_head/cache/
 
 # lightweight_fpttc/: the saved FP-TTC features used for training (~1.5 GB) are not committed;
 # the small trained decoder (about 1.5 MB) is.
-lightweight_fpttc/removing_decoder/cache/
-lightweight_fpttc/removing_flow_affine/cache/
-!lightweight_fpttc/removing_decoder/weights/
-!lightweight_fpttc/removing_decoder/weights/*.pt
-!lightweight_fpttc/removing_flow_affine/weights/
-!lightweight_fpttc/removing_flow_affine/weights/*.pt
+lightweight_fpttc/removing_decoder_only/cache/
+lightweight_fpttc/removing_flow_affine_decoder/cache/
+!lightweight_fpttc/removing_decoder_only/weights/
+!lightweight_fpttc/removing_decoder_only/weights/*.pt
+!lightweight_fpttc/removing_flow_affine_decoder/weights/
+!lightweight_fpttc/removing_flow_affine_decoder/weights/*.pt
 
 # Distillation runs: the extra-frame features (2.9 GB) are not committed; each run's trained Conv3 (about 1.5 MB) is.
-lightweight_fpttc/removing_flow_affine/distill_more_frames/cache/
-!lightweight_fpttc/removing_flow_affine/distillation_only/weights/
-!lightweight_fpttc/removing_flow_affine/distillation_only/weights/*.pt
-!lightweight_fpttc/removing_flow_affine/distill_then_kitti/weights/
-!lightweight_fpttc/removing_flow_affine/distill_then_kitti/weights/*.pt
-!lightweight_fpttc/removing_flow_affine/distill_more_frames/weights/
-!lightweight_fpttc/removing_flow_affine/distill_more_frames/weights/*.pt
+lightweight_fpttc/removing_flow_affine_decoder/distill_more_frames/cache/
+!lightweight_fpttc/removing_flow_affine_decoder/distillation_only/weights/
+!lightweight_fpttc/removing_flow_affine_decoder/distillation_only/weights/*.pt
+!lightweight_fpttc/removing_flow_affine_decoder/distill_then_kitti/weights/
+!lightweight_fpttc/removing_flow_affine_decoder/distill_then_kitti/weights/*.pt
+!lightweight_fpttc/removing_flow_affine_decoder/distill_more_frames/weights/
+!lightweight_fpttc/removing_flow_affine_decoder/distill_more_frames/weights/*.pt
+!lightweight_fpttc/removing_decoder_only/distillation/weights/
+!lightweight_fpttc/removing_decoder_only/distillation/weights/*.pt
 
 # Leftovers of a short test run (not a result)
-lightweight_fpttc/removing_flow_affine/weights/smoke.pt
-lightweight_fpttc/removing_flow_affine/results/smoke*.json
-lightweight_fpttc/removing_flow_affine/smoke_log.txt
+lightweight_fpttc/removing_flow_affine_decoder/weights/smoke.pt
+lightweight_fpttc/removing_flow_affine_decoder/results/smoke*.json
+lightweight_fpttc/removing_flow_affine_decoder/smoke_log.txt

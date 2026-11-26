@@ -29,7 +29,7 @@ import torch
 import torch.nn as nn
 
 HERE = Path(__file__).resolve().parent
-sys.path.insert(0, str(HERE.parent / "removing_decoder"))
+sys.path.insert(0, str(HERE.parent / "removing_decoder_only"))
 
 import light_model as L  # noqa: E402
 

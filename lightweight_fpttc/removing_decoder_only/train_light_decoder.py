@@ -5,7 +5,7 @@ What it does
   1. Run the full FP-TTC once on each of the 200 KITTI training pairs (frames _09 and _10, the same
      "past" pairing the model was trained on) and save: SF_t, x_t (the image features of the later
      frame), the full model's own scale map, KITTI's true scale map and its valid mask, the car mask.
-     Saved to lightweight_fpttc/removing_decoder/cache/ (about 1.5 GB, not committed). Skipped if it exists.
+     Saved to lightweight_fpttc/removing_decoder_only/cache/ (about 1.5 GB, not committed). Skipped if it exists.
   2. Learn: Conv3 turns Concat(SF_t, x_t) into a scale map. Loss = mean |log guess - log true| over the
      pixels where KITTI has a true scale (the paper's Eq. 10), at KITTI's picture size.
   3. Quiz images pick the best round. The 40 held-out images (numbers divisible by 5, the paper's test
@@ -14,8 +14,8 @@ What it does
 Images:  held-out test = number divisible by 5 (40);  quiz = number ending in 1 (20);  training = the rest (140).
 
 Usage (from the project root, with the project .venv):
-    python lightweight_fpttc/removing_decoder/train_light_decoder.py
-    python lightweight_fpttc/removing_decoder/train_light_decoder.py --rebuild_cache
+    python lightweight_fpttc/removing_decoder_only/train_light_decoder.py
+    python lightweight_fpttc/removing_decoder_only/train_light_decoder.py --rebuild_cache
 """
 
 import argparse
@@ -169,7 +169,7 @@ def main():
     out.mkdir(exist_ok=True)
     (out / "training_log.json").write_text(json.dumps(log, indent=1))
     print(f"\nsaved {L.WEIGHTS_FILE}  (best quiz error {best * 1e4:.1f}; the same units as the Mid error)")
-    print("next: python lightweight_fpttc/removing_decoder/evaluate_light.py")
+    print("next: python lightweight_fpttc/removing_decoder_only/evaluate_light.py")
 
 
 if __name__ == "__main__":

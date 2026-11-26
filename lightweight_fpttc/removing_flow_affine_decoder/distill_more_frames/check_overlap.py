@@ -4,7 +4,7 @@ KITTI scene flow's 200 training scenes? If a raw frame is (nearly) the same pict
 not be used for training. Compares small grayscale thumbnails of every raw frame with frames 10 and 11 of every scene.
 
 Usage (from the project root, with the project .venv):
-    python lightweight_fpttc/removing_flow_affine/distill_more_frames/check_overlap.py
+    python lightweight_fpttc/removing_flow_affine_decoder/distill_more_frames/check_overlap.py
 Writes results/overlap_check.json.
 """
 import json
